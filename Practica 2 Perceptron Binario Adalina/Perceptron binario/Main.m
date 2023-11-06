@@ -2,12 +2,12 @@ clear;
 clc;
 close all;
 
-%load DatosAND
+load DatosAND
 %load DatosLS5
 %load DatosLS10
 %load DatosLS50
 %load DatosOR
-load DatosXOR
+%load DatosXOR
 
 Data(:,end)=Data(:,end)==1;
 

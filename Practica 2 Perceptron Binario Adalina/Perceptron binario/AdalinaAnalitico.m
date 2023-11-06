@@ -7,7 +7,7 @@ X = Data(:,1:end-1);
 Y = Data(:, end);
 
 % Agregar una columna de unos a X (sesgo)
-X = [X, ones(size(X, 1), 1)];
+X = [X, -ones(size(X, 1), 1)];
 
 % Pesos W de forma analítica
 W = inv(X' * X) * X' * Y;
