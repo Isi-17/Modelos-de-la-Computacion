@@ -1,14 +1,16 @@
 function out = CheckPattern(Data,W)
     i = 1;
     out = true;
-    while i <= size(Data, 1) && out
-        [~, Output, Target] = ValoresIOT(Data, W, i);
-        if Signo(Output) ~= Target   % discretizamos Output
+
+    while out && i <= size(Data,1)
+        [~, Output, Target] = ValoresIOT(Data,W,i);
+        if Target ~= Signo(Output)
             out = false;
         end
         i = i + 1;
     end
 end
+
 % Esta función verifica si el perceptrón ha clasificado correctamente todos los patrones en el conjunto de datos. Aquí está cómo funciona:
 
 % 1. Itera a través de cada fila del conjunto de datos (Data)

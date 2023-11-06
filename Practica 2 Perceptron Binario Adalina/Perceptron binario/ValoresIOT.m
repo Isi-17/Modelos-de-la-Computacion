@@ -1,11 +1,10 @@
-function [Input, Output, Target] = ValoresIOT(Data,W, i)
-
-Input = Data(i, 1:end-1);
-Target = Data(i, end);
-Output = sum(W' .* [Input -1]); % no usamos la funcion signo
-% Output = [Input -1] * W
-
+function [Input, Output, Target] = ValoresIOT(Data,W,i)
+    Input = Data(i, 1:end-1);
+    Target = Data(i, end);
+    %Output = sum(W' .* [Input -1]); % no usamos la funcion signo
+    Output = [Input -1] * W;
 end
+
 % Esta función calcula los valores de entrada, salida y objetivo para una fila específica del conjunto de datos. Aquí está cómo funciona:
 
 % 1. Obtiene la entrada (Input) tomando todas las columnas de la fila i excepto la última (asumiendo que la última columna contiene el valor objetivo).

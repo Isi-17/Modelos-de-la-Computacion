@@ -2,9 +2,9 @@ clear;
 clc;
 close all;
 
-load DatosAND
+%load DatosAND
 %load DatosLS5
-%load DatosLS10
+load DatosLS10
 %load DatosLS50
 %load DatosOR
 %load DatosXOR
@@ -15,9 +15,9 @@ LR=0.5;
 Limites=[-1.5, 2.5, -1.5, 2.5];
 MaxEpoc=100;
 
-%W=PerceptronWeigthsGenerator(Data);
+W=PerceptronWeigthsGenerator(Data);
 
-W = [0 0 0];  % Inicializa los pesos a [0 0 0]
+%W = [0 0 0];  % Inicializa los pesos a [0 0 0]
 
 % Apartado 2
 % LR = -0.1;  % Tasa de aprendizaje negativa
@@ -43,11 +43,11 @@ while ~CheckPattern(Data,W) && Epoc<MaxEpoc
 %         pause;
         
         if Signo(Output)~=Target   % discretizamos salida
-           W=UpdateNet(W,LR,Output,Target,Input);
+           W=UpdateNet(W,LR,Signo(Output),Target,Input);
         end
         
 % Calcula el error cuadrático para esta entrada y lo acumula
-        error = (Target - Output).^2;
+        error = (Target - Signo(Output))^2;
         sum_squared_error = sum_squared_error + error;
 
  % Calcula el ECM promedio para esta época y lo agrega al vector ECM
@@ -68,14 +68,15 @@ end
 
 if CheckPattern(Data, W)
        disp('Se consigue');
+       % Grafica la evolución del ECM
+        figure;
+        plot(1:length(ECM), ECM);
+        title('Evolución del Error Cuadrático Medio (ECM)');
+        xlabel('Época');
+        ylabel('ECM');
 end
      
-% Grafica la evolución del ECM
-figure;
-plot(1:length(ECM), ECM);
-title('Evolución del Error Cuadrático Medio (ECM)');
-xlabel('Época');
-ylabel('ECM');
+
 
 %D = datosAnD
 %X = D(:, 1:end-1)

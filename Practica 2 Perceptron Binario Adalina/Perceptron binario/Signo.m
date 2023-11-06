@@ -7,4 +7,3 @@ Out(Out==-1)=0;
 %    else
 %        Out = 1;
 %    end 
-
