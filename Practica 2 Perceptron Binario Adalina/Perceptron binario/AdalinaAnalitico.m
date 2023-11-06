@@ -15,8 +15,8 @@ W = inv(X' * X) * X' * Y;
 % Salida del modelo
 Output = X * W;
 
-% Discretizar las salidas (0 o 1)
-Label = Output >= 0.5;
+% Discretizar las salidas (0 o 1) -> (-1 o 1)
+Label = (Output >= 0.5)*2 - 1;
 
 % Error Cuadrático Medio (ECM). Divido entre el n patrones
 ECM = (norm(Y - Output, 2)^2) / size(X, 1);
